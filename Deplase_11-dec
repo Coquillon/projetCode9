@@ -1,0 +1,65 @@
+#====== Deplase ======#
+
+alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+fraz_total = ""
+
+def list_pa():
+    nombre_pa = []
+    for i in range(0, 26):
+        nombre_pa.append(i)
+    return nombre_pa
+
+def nbr_pa():
+    nb_valid = list_pa()
+
+    while True:
+        try:
+            nbr_pa = int(input("Nomb pa: 0 a 25 selman (sezi on entier): "))
+            if nbr_pa in nb_valid:
+                break
+            else:
+                print(f"Nomb {nbr_pa} pa nan list la.")
+        except ValueError:
+            print("Antre yon valè antye.")
+    return nbr_pa
+# ==================================================
+print("""Sezi tout deplasman yo : ex :
+      >1S ==> T (deplase 1 pa a dwat S )
+      <1C ==> B (deplase 1 pa a goch C )
+      """)
+
+while True :
+    direksyon = input("Karakte   : < ou > selman : ")
+    while (direksyon != "<" and direksyon != ">" ) :
+        direksyon = input("Karakte   : < ou > selman : ")
+    #nomb pa
+    nbr_p = nbr_pa()
+    let = input("Let       : a - z  selman : ")
+    while let not in alphabet:
+        let = input("Let       : a - z  selman : ")
+        
+    
+    if direksyon == ">":
+        p_let = 0
+        for i, al in enumerate(alphabet):
+            if al == let:
+                p_let = i
+        fraz_total += alphabet[(nbr_p + p_let)]
+    elif direksyon == "<":
+        p_let = 0
+        for i, al in enumerate(alphabet):
+            if al == let:
+                p_let = i
+        fraz_total += alphabet[(p_let - nbr_p )]
+    
+
+    continuer = input("Voulez-vous continuer ? Y/N : ").lower()
+
+    if continuer == "n":
+        break
+    else:
+        pass
+    
+print(fraz_total.upper())
+
+print("")
